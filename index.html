@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            font-size: 80px;
+            color: #e74c3c;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10%, 30% {
+                transform: scale(1.1);
+            }
+            20%, 40% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .message {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #34495e;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .message p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .flowers {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .flower1 { top: 20px; left: 20px; animation-delay: 0s; }
+        .flower2 { top: 40px; right: 30px; animation-delay: 0.5s; }
+        .flower3 { bottom: 30px; left: 40px; animation-delay: 1s; }
+        .flower4 { bottom: 50px; right: 20px; animation-delay: 1.5s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-size: 24px;
+            color: #2c3e50;
+            font-style: italic;
+        }
+
+        #forgiveBtn {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .response {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #27ae60;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .message {
+                font-size: 18px;
+            }
+
+            .heart {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="flowers flower1">🌸</div>
+        <div class="flowers flower2">🌺</div>
+        <div class="flowers flower3">🌷</div>
+        <div class="flowers flower4">🌹</div>
+
+        <div class="heart">❤️</div>
+        <h1>I'm Truly Sorry</h1>
+        
+        <div class="message">
+            <p>My dearest,</p>
+            
+            <p>I know I messed up, and I want you to know how deeply sorry I am. What I did was wrong, and I hurt you in the process. That's something I truly regret.</p>
+            
+            <p>You mean <span class="highlight">the world</span> to me, and seeing you upset breaks my heart. I never want to be the reason for your tears or sadness. You deserve so much better, and I promise to do better.</p>
+            
+            <p>I'm asking for your forgiveness, not because I deserve it, but because I want the chance to make things right. I want to show you through my actions that I've learned from this mistake.</p>
+            
+            <p>Please know that I love you more than words can express, and I'm committed to being the partner you deserve.</p>
+        </div>
+
+        <button class="button" onclick="showForgiveness()">Click if you forgive me ❤️</button>
+        
+        <div id="response" class="response">
+            Thank you for forgiving me! I promise to make it up to you! 💕
+        </div>
+
+        <div class="signature">
+            With all my love,<br>
+            Your [Name]
+        </div>
+    </div>
+
+    <script>
+        function showForgiveness() {
+            document.getElementById('response').style.display = 'block';
+            const hearts = ['❤️', '💕', '💖', '💗', '💓'];
+            let count = 0;
+            
+            const interval = setInterval(() => {
+                if (count < 20) {
+                    createFloatingHeart(hearts[Math.floor(Math.random() * hearts.length)]);
+                    count++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 200);
+        }
+
+        function createFloatingHeart(emoji) {
+            const heart = document.createElement('div');
+            heart.textContent = emoji;
+            heart.style.position = 'fixed';
+            heart.style.fontSize = '30px';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '100%';
+            heart.style.transition = 'all 3s ease-out';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.style.top = '-10%';
+                heart.style.opacity = '0';
+            }, 100);
+            
+            setTimeout(() => {
+                document.body.removeChild(heart);
+            }, 3100);
+        }
+    </script>
+</body>
+</html>
